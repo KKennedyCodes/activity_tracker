@@ -1,11 +1,13 @@
 # Rakefile
-require 'rake'
+# require 'rake'
 
-# Dir.glob('scripts/*.rb').each { |file| load file }
+Dir.glob('lib/tasks/files/*.rb').each { |file| load file }
 
-namespace :scripts do
-  desc "Run the example script"
-  task :example_script do 
-    load 'scripts/example_script.rb'
-  end
-end
+# namespace :scripts do
+#   desc "Run the example script"
+#   task :example_script do 
+#     load 'scripts/example_script.rb'
+#   end
+# end
+
+# Rails.application.load_tasks
