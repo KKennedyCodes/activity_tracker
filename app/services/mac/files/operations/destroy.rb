@@ -10,9 +10,9 @@ module Mac
         def call
           puts 'Deleting a File'
           
-          file_name = Services::Helpers.input_file_name
-          file_type = Services::Helpers.input_file_type
-          file_path = Services::Helpers.input_file_path
+          file_name = Helpers.input_file_name
+          file_type = Helpers.input_file_type
+          file_path = Helpers.input_file_path
           complete_file_path = File.join(file_path, "#{file_name}#{file_type}")
           
           File.delete(complete_file_path)

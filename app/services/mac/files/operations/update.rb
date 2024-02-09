@@ -10,16 +10,14 @@ module Mac
         def call
           puts 'Updating a File'
           
-          file_name = Services::Helpers.input_file_name
-          file_type = Services::Helpers.input_file_type
-          file_path = Services::Helpers.input_file_path
+          file_name = Helpers.input_file_name
+          file_type = Helpers.input_file_type
+          file_path = Helpers.input_file_path
           complete_file_path = File.join(file_path, "#{file_name}#{file_type}")
           
           if File.exist?(complete_file_path)
-            File.open(complete_file_path, 'w') do |file|
-              #Update the content of the file
-              file.puts "\nThis file has been updated!"
-            end
+            Helpers.update_file_content(:mac, complete_file_path)
+            
             puts "File updated successfully"
             meta_data = { success: true }
             create_log(meta_data)
@@ -40,59 +38,15 @@ module Mac
       def create_log(meta_data)
         Mac::Logs::Operations::Create.new.call(
         {
-        activity: "file deletion",
+        activity: "file update",
         meta_data: meta_data
       }
       )
     end
     
+    
+    
   end
 end
-end
-end
-
-
-
-
-
-
-
-require 'rbconfig'
-require 'etc'
-require_relative '../helpers'
-require 'pry'
-
-namespace :files do
-  desc "Updates a file"
-  task :update_file do    
-    op_system = Tasks::Helpers.which_op_system()   
-    file_name = Tasks::Helpers.input_file_name()
-    file_type = Tasks::Helpers.input_file_type()
-    file_path = Tasks::Helpers.input_file_path()
-    complete_file_path = File.join(file_path, "#{file_name}#{file_type}")
-    
-    case op_system
-    when :mac
-      File.open(complete_file_path, 'w') do |file|
-        # Write content to the file
-        file.puts "File Name: #{file_name}"
-        file.puts "File Type: #{file_type}"
-        file.puts "File Path: #{file_path}"
-        file.puts "\nAdding Modification!"
-      end
-      
-      puts "File Modified"
-      
-      Tasks::Helpers.save_activity_log(
-      {
-      activity: "file modified",
-      process_id: Process.pid,
-      command_line: ARGV.join(' ')
-    }
-    )
-  when :windows       
-  else
-    puts "Unsupported operating system"
-  end 
 end
 end

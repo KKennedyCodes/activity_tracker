@@ -15,7 +15,7 @@ module Mac
           date_time = DateTime.now
           log_data[:timestamp] = date_time
           
-          log_data[:process_id] = Process.pid,
+          log_data[:process_id] = Process.pid
           log_data[:command_line] =  ARGV.join(' '),
           
           folder_path = "/Users/#{username}/Desktop/activity_logs/"

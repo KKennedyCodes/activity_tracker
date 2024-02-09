@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class Helpers
+module Helpers
   
   def self.input_file_name
     puts 'Enter Your File Name: (Default Set to new_file)'
@@ -22,4 +22,26 @@ class Helpers
     file_type = STDIN.gets.chomp
     return file_type.empty? ? ".txt" : file_type
   end
+  
+  def self.update_file_content(op_system, complete_file_path)
+    file_contents = File.read(complete_file_path)
+    
+    # Display the current contents to the user
+    puts "Current contents of the file:"
+    puts file_contents
+    
+    # Ask the user for edits
+    key_instructions = {
+    mac: "Ctrl + D",
+    windows: "Ctrl + Z"   
+  }
+  binding.pry
+  puts "Enter your edits below. Press #{key_instructions[op_system]} followed by Enter to save:"
+  edited_contents = $stdin.read
+  
+  # Write the edited contents back to the file
+  File.open(complete_file_path, 'w') do |file|
+    file.puts edited_contents
+  end
+end
 end
