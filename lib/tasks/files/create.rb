@@ -4,10 +4,10 @@ require_relative '../helpers'
 require_relative '../../../app/services/mac/files/operations/create'
 require 'pry'
 
-# rake files:create_file
+# rake files:create
 namespace :files do
   desc "Create a new file"
-  task :create_file do    
+  task :create do    
     op_system = Tasks::Helpers.which_op_system  
     
     case op_system

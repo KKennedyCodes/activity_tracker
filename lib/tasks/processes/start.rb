@@ -1,18 +1,18 @@
 require 'rbconfig'
 require 'etc'
 require_relative '../helpers'
-require_relative '../../../app/services/mac/files/operations/destroy'
+require_relative '../../../app/services/mac/processes/operations/create'
 require 'pry'
 
-# rake files:delete_file
-namespace :files do
-  desc "Delete a File"
-  task :delete_file do    
+# rake processes:start
+namespace :processes do
+  desc "Starting a Process"
+  task :start do    
     op_system = Tasks::Helpers.which_op_system  
     
     case op_system
     when :mac
-      Mac::Files::Operations::Destroy.new.call 
+      Mac::Processes::Operations::Create.new.call 
     when :windows       
     else
       puts "Unsupported operating system"

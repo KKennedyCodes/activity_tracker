@@ -15,6 +15,8 @@ module Mac
           file_path = Helpers.input_file_path
           complete_file_path = File.join(file_path, "#{file_name}#{file_type}")
           
+          # TO DO: Handle case when file already exists - append # to end.
+          # TO DO: Rescue case when file can't be created          
           File.open(complete_file_path, 'w') do |file|
             # Write content to the file
             file.puts "File Name: #{file_name}"

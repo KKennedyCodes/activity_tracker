@@ -23,6 +23,19 @@ module Helpers
     return file_type.empty? ? ".txt" : file_type
   end
   
+  def self.input_application_name
+    puts "Enter the Application You Want to Open"
+    application = STDIN.gets.chomp
+    return application.empty? ? "Calculator.app" : application
+  end
+  
+  def self.input_optional_params
+    puts "Enter Your Optional Params"
+    puts "example: spotify:playlist:09Aacdz2QLn0ElFu58joQx?si=88f88d6ca72848e3"
+    params = STDIN.gets.chomp
+    return params.empty? ? nil : params
+  end
+  
   def self.update_file_content(op_system, complete_file_path)
     file_contents = File.read(complete_file_path)
     
@@ -35,8 +48,8 @@ module Helpers
     mac: "Ctrl + D",
     windows: "Ctrl + Z"   
   }
-  binding.pry
-  puts "Enter your edits below. Press #{key_instructions[op_system]} followed by Enter to save:"
+  
+  puts "Enter your edits below. Press Enter followed by #{key_instructions[op_system]} to save:"
   edited_contents = $stdin.read
   
   # Write the edited contents back to the file

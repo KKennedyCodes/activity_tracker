@@ -7,7 +7,7 @@ require 'pry'
 # rake files:update_file
 namespace :files do
   desc "Update a File"
-  task :update_file do    
+  task :update do    
     op_system = Tasks::Helpers.which_op_system  
     
     case op_system

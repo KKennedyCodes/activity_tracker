@@ -1,7 +1,7 @@
 # Rakefile
 # require 'rake'
 
-Dir.glob('lib/tasks/files/*.rb').each { |file| load file }
+Dir.glob('lib/tasks/*/*.rb').each { |file| load file }
 
 # namespace :scripts do
 #   desc "Run the example script"
