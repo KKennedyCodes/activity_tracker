@@ -4,7 +4,7 @@ require_relative '../helpers'
 require_relative '../../../app/services/mac/network_connections/operations/connect'
 require 'pry'
 
-# rake files:create
+# rake network:connect
 namespace :network do
   desc "Connecting to a Network"
   task :connect do    
