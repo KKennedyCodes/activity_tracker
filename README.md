@@ -11,7 +11,6 @@ A csv log is created after each action performed.
 
 ## Supported Operating Systems
 - Mac OS
-- Windows
 
 ## Console Commands
 Run the following commands within the console.
