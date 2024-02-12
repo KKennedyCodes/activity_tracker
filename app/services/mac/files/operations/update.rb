@@ -42,10 +42,7 @@ module Mac
         meta_data: meta_data
       }
       )
-    end
-    
-    
-    
+    end  
   end
 end
 end

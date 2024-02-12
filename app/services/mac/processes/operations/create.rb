@@ -12,18 +12,14 @@ module Mac
           puts 'Starting a Process'
           
           # open -a /Applications/MyApp.app --args --option1 value1 --option2 value2
-          #TO DO: Handle if user already added file extension with path.
           application_name = Helpers.input_application_name
           params = Helpers.input_optional_params
           
           application_path = find_application_path(application_name)
           
-          begin
-            # TO DO: Handle case when file already exists - append # to end.
-            # TO DO: Rescue case when file can't be created          
+          begin       
             system_command = "open -a '#{application_path}'"
             system_command += "  --args #{params}" unless params == nil 
-            # system(system_command)
             system("open -a #{system_command}")
             
             meta_data = {
@@ -33,7 +29,6 @@ module Mac
           }
           create_log(meta_data)
         rescue => e
-          # Handle the error here
           puts "An error occurred: #{e.message}"
           meta_data = {
           success: false,

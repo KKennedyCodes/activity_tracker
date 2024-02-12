@@ -8,8 +8,8 @@ module Tasks
         return(:mac)
       when /mswin|msys|mingw|cygwin|bccwin|wince|emc/i
         return(:windows)
-        # when /linux/i
-        #   return("Linux")
+      when /linux/i
+        return(:linux)
       else
         return(nil)
       end

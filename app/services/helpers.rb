@@ -44,11 +44,9 @@ module Helpers
   def self.update_file_content(op_system, complete_file_path)
     file_contents = File.read(complete_file_path)
     
-    # Display the current contents to the user
     puts "Current contents of the file:"
     puts file_contents
     
-    # Ask the user for edits
     key_instructions = {
     mac: "Ctrl + D",
     windows: "Ctrl + Z"   
@@ -57,7 +55,6 @@ module Helpers
   puts "Enter your edits below. Press Enter followed by #{key_instructions[op_system]} to save:"
   edited_contents = $stdin.read
   
-  # Write the edited contents back to the file
   File.open(complete_file_path, 'w') do |file|
     file.puts edited_contents
   end
