@@ -4,7 +4,7 @@ require_relative '../helpers'
 require_relative '../../../app/services/mac/files/operations/update'
 require 'pry'
 
-# rake files:update_file
+# rake files:update
 namespace :files do
   desc "Update a File"
   task :update do    

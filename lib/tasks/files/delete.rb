@@ -4,7 +4,7 @@ require_relative '../helpers'
 require_relative '../../../app/services/mac/files/operations/destroy'
 require 'pry'
 
-# rake files:delete_file
+# rake files:delete
 namespace :files do
   desc "Delete a File"
   task :delete do    
