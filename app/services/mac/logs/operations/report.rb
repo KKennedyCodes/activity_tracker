@@ -20,22 +20,19 @@ module Mac
           Dir.mkdir(reports_folder_path) unless Dir.exist?(reports_folder_path)   
           
           complete_file_path = File.join(folder_path, "reports", "#{date_time}.json")      
-          binding.pry
           json_data = []
           
-          binding.pry
           csv_files.each do |csv_file|
             CSV.foreach(csv_file, headers: true) do |row|
               json_data << row.to_hash
             end
           end
-          binding.pry
+          
           File.open(complete_file_path, 'w') do |file|
             file.write(JSON.pretty_generate(json_data))
           end
-          binding.pry
-          puts "CSV files merged successfully. Merged file: #{complete_file_path}}"
           
+          puts "CSV files merged successfully. Merged file: #{complete_file_path}}"
           delete_reported_logs(csv_files)
           
           return json_data
