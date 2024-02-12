@@ -36,6 +36,11 @@ module Helpers
     return params.empty? ? nil : params
   end
   
+  def self.input_port_number
+    puts "Enter Port:"
+    STDIN.gets.chomp
+  end
+  
   def self.update_file_content(op_system, complete_file_path)
     file_contents = File.read(complete_file_path)
     
