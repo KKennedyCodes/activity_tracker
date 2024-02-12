@@ -12,8 +12,7 @@ namespace :network do
     
     case op_system
     when :mac
-      Mac::NetworkConnections::Operations::Transmit.new.call 
-    when :windows       
+      Mac::NetworkConnections::Operations::Transmit.new.call       
     else
       puts "Unsupported operating system"
     end 

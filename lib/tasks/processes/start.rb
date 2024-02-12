@@ -12,8 +12,7 @@ namespace :processes do
     
     case op_system
     when :mac
-      Mac::Processes::Operations::Create.new.call 
-    when :windows       
+      Mac::Processes::Operations::Create.new.call      
     else
       puts "Unsupported operating system"
     end 

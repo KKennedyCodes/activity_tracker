@@ -12,8 +12,7 @@ namespace :files do
     
     case op_system
     when :mac
-      Mac::Files::Operations::Update.new.call 
-    when :windows       
+      Mac::Files::Operations::Update.new.call       
     else
       puts "Unsupported operating system"
     end 
