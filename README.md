@@ -18,9 +18,9 @@ Note: To See Availble Rake Tasks `rake --tasks`
 ### Running the file:manage Task with Parameters
 The `file:manage` Rake task allows you to perform various operations on files, such as creating, updating, or deleting them. It accepts the following parameters:
 
-`file_path`: The path to the file.
-`operation`: The operation to perform (-c for create, -u for update, -d for delete).
-`content` (optional): The content to write to the file (only required for the create and update operations).
+- `file_path`: The path to the file.
+- `operation`: The operation to perform (-c for create, -u for update, -d for delete).
+- `content` (optional): The content to write to the file (only required for the create and update operations).
 To run the task, use the following command format:
 
 ```rake file:manage[file_path, operation, content]```
