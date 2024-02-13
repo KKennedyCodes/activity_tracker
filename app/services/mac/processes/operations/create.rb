@@ -1,4 +1,3 @@
-# frozen_string_literal: true
 require 'pry'
 require 'shellwords'
 require_relative '../../../helpers'
@@ -8,17 +7,12 @@ module Mac
   module Processes
     module Operations
       class Create      
-        def call
-          puts 'Starting a Process'
-          
-          # open -a /Applications/MyApp.app --args --option1 value1 --option2 value2
-          application_name = Helpers.input_application_name
-          params = Helpers.input_optional_params
-          
-          application_path = find_application_path(application_name)
+        def call(option, process, params1, params2, params3)          
+          application_path = option == :by_name ? find_application_path(process) : process
           if application_path.empty?
-            return handle_not_found(application_name)            
+            return handle_not_found(process_name)            
           else
+            params = [params1, params2, params3].compact.map { |param| Shellwords.escape(param) }.join(" ")
             return open_application(
               app_path: application_path,
               params: params
@@ -28,8 +22,8 @@ module Mac
         
         private
         
-        def find_application_path(application_name)
-          result = `mdfind '#{application_name}.app'`
+        def find_application_path(process_name)
+          result = `mdfind '#{process_name}.app'`
           first_result = result.empty? ? "" : result.lines.first.chomp
           return first_result
         end
@@ -37,8 +31,8 @@ module Mac
         def open_application(app_path:, params:)
           begin       
             system_command = "open -a '#{app_path}'"
-            system_command += "  --args #{params}" unless params == nil
-            system("open -a #{system_command}")
+            system_command += " --args #{params}" unless params.empty?
+            system(system_command)
             
             meta_data = {
               success: true,
@@ -70,7 +64,7 @@ module Mac
         def create_log(meta_data)
           Mac::Logs::Operations::Create.new.call(
             {
-              activity: "file deletion",
+              activity: "process start",
               meta_data: meta_data
             }
           )
