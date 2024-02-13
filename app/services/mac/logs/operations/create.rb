@@ -26,8 +26,6 @@ module Mac
             csv << log_data.keys
             csv << log_data.values
           end
-          
-          puts "Log Created - #{csv_file_path}"
         end
       end
     end

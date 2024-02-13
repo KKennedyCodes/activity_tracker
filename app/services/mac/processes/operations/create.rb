@@ -20,8 +20,8 @@ module Mac
             return handle_not_found(application_name)            
           else
             return open_application(
-            app_path: application_path,
-            params: params
+              app_path: application_path,
+              params: params
             )
           end
         end
@@ -41,41 +41,41 @@ module Mac
             system("open -a #{system_command}")
             
             meta_data = {
-            success: true,
-            process: app_path,
-            parameters: params
+              success: true,
+              process: app_path,
+              parameters: params
+            }
+            create_log(meta_data)
+          rescue => e
+            puts "An error occurred: #{e.message}"
+            meta_data = {
+              success: false,
+              error: e
+            }
+            create_log(meta_data)
+          end
+        end
+        
+        def handle_not_found(app_name)
+          not_found_msg = "The app name: #{app_name} was not found"
+          puts not_found_msg
+          
+          meta_data = {
+            success: false,
+            error: not_found_msg
           }
           create_log(meta_data)
-        rescue => e
-          puts "An error occurred: #{e.message}"
-          meta_data = {
-          success: false,
-          error: e
-        }
-        create_log(meta_data)
+        end
+        
+        def create_log(meta_data)
+          Mac::Logs::Operations::Create.new.call(
+            {
+              activity: "file deletion",
+              meta_data: meta_data
+            }
+          )
+        end
       end
     end
-    
-    def handle_not_found(app_name)
-      not_found_msg = "The app name: #{app_name} was not found"
-      puts not_found_msg
-      
-      meta_data = {
-      success: false,
-      error: not_found_msg
-    }
-    create_log(meta_data)
   end
-  
-  def create_log(meta_data)
-    Mac::Logs::Operations::Create.new.call(
-    {
-    activity: "file deletion",
-    meta_data: meta_data
-  }
-  )
-end
-end
-end
-end
 end
